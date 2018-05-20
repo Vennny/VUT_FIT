@@ -1,7 +1,7 @@
 /*
  * Soubor:  proj2.c
  * Datum:   2017/11/9
- * Autor:   Václav Trampeška - xtramp00, xtramp00@stud.fit.vutbr.cz
+ * Autor:   Vennny
  * Projekt: Iteracni vypocty, projekt č. 2 pro předmět IZP
  */
 
