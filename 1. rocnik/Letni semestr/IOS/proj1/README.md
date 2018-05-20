@@ -49,7 +49,7 @@ Skript vrací úspěch v případě úspěšné operace nebo v případě úspě
 ### POZNÁMKY
 
 - Skript nebere v potaz soubory, se kterými dříve počítal a které jsou nyní smazané.
-- Při rozhodování relativní cesty adresáře je doporučené používat reálnou cestu (realpath). Důvod např.:
+- Při rozhodování relativní cesty adresáře je doporučené používat reálnou cestu (`realpath`). Důvod např.:
 
 ```
 $ wedi .
@@ -61,7 +61,7 @@ $ wedi ‘pwd‘
 - Skript by měl mít v celém běhu nastaveno `POSIXLY_CORRECT=yes`.
 - Skript by měl běžet na všech běžných shellech (dash, ksh, bash). Můžete použít GNU rozšíření pro `sed` či `awk`. Jazyk Perl nebo Python povolen není.
 - Skript by měl ošetřit i chybový případ, že na daném stroji utilita `realpath` není dostupná.
-Referenční stroj neexistuje. Skript musí běžet na běžně dostupných OS GNU/Linux a <pre>*BSD</pre>. Ve školním prostředí máte k dispozici počítače laboratořích (CentOS), stroj merlin (CentOS) a eva (FreeBSD). *Pozor, na stroji merlin je shell /bin/ksh symbolický odkaz na bash (tj. nechová se jako Korn shell jako na obvyklých strojích)*.
+Referenční stroj neexistuje. Skript musí běžet na běžně dostupných OS GNU/Linux a \*BSD. Ve školním prostředí máte k dispozici počítače laboratořích (CentOS), stroj merlin (CentOS) a eva (FreeBSD). *Pozor, na stroji merlin je shell /bin/ksh symbolický odkaz na bash (tj. nechová se jako Korn shell jako na obvyklých strojích)*.
 - Skript nesmí používat dočasné soubory. Povoleny jsou dočasné souborynepřímo tvořené příkazem `sed` (např. argument `sed -i`).
 
 ## Příklady použití
