@@ -1,6 +1,6 @@
 /**
  * 3. projekt IZP 2017/18
- * Autor: Vennny
+ * Autor: Václav Trampeška - xtramp00
  * Jednoducha shlukova analyza
  * Unweighted pair-group average
  */
