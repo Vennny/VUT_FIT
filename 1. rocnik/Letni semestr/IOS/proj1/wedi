@@ -1,0 +1,250 @@
+#!/bin/sh
+
+# IOS - projekt 1
+# Autor: Vaclav Trampeska (xtramp00)
+# Datum: 28.3.2018
+
+
+POSIXLY_CORRECT=yes
+
+#ulozeni jmena operacniho systemu
+OS=$(uname)
+
+#kontrola zda je nainstalovana utility realpath
+if ! realpath . >>/dev/null; then
+	echo "ERROR: Nelze nalezt cestu. Zkontrolujte zda je realpath nainstalovano." >&2
+	exit 1
+fi
+
+#kontrola promenne WEDI_RC, jestli je v ni cesta k wedirc 
+if [ -z "$WEDI_RC" ]; then 
+	echo "ERROR: Neni zadana cesta v promenne WEDI_RC." >&2
+	exit 1
+
+#kdyz je zadana cesta, ale neexistuje, tak ji vytvori
+else 	
+	if [ ! -f "$f(basename "$WEDI_RC")" ] && [ -d "$(dirname "$WEDI_RC")" ]; then 
+		touch "$(dirname "$WEDI_RC")"/"$(basename "$WEDI_RC")"
+	 else mkdir -p "$(dirname "$WEDI_RC")" && touch "$WEDI_RC" 
+	fi
+fi
+
+#spocitam radky ve wedirc
+lines=$(wc -l < "$WEDI_RC")
+
+#cyklus, ktery vymaze z wedirc zaznamy o souborech, co uz neexistuji
+i=1
+while [ $i -le "$lines" ]
+do
+	#cyklus prochazi radek po radku a uklada si cestu k souboru
+	cesta=$(head -n "$i" "$WEDI_RC" | tail -1 | cut -f1 -d ':')
+
+	if [ ! -f "$cesta" ]; then
+
+		#vymaze radek pokud je cesta neplatna
+		if [ "$OS" = "FreeBSD" ];then
+			gsed -i "${i}d" "$WEDI_RC"
+		
+		else 
+			sed -i "${i}d" "$WEDI_RC"
+		fi
+	fi
+
+	i=$( expr $i + 1)
+done
+
+#funkce pro editovani souboru
+file_edit(){
+
+	if ! [ -f "$cesta" ]; then
+		echo "ERROR: Soubor nebyl nalazen." >&2
+		exit 1
+	fi
+
+	if [ -z "$EDITOR" ]; then
+		if [ -z "$VISUAL" ]; then
+			vi "$cesta"
+		else 
+			$VISUAL "$cesta";
+		fi
+	else
+		$EDITOR "$cesta";
+	fi
+
+	#zaznam do wedirc
+	echo "$(realpath "${cesta}"):$(date  '+%Y-%m-%d:%H:%M:%S')" >> "$WEDI_RC"
+}
+
+#najde posledni editovany soubor a otevre
+last_edit(){
+
+	#najde posledni zaznam (= posledni radek) ve wedirc
+	cesta=$(grep "$current_path/[^/]*$" "$WEDI_RC" | cut -f1 -d ':' |tail -1)
+	file_edit
+}
+
+#najde nejcasteji editovany soubor a otevre
+most_edit(){
+
+	cesta=$(grep "$current_path/[^/]*$" "$WEDI_RC" | cut -f1 -d ':' |sort |uniq -c | sort -r | awk '{print $2}' | head -1)
+	file_edit
+}
+
+#vypise vsechny editovane soubory
+all_edited(){
+
+	grep "$current_path/[^/]*$" "$WEDI_RC" | cut -f1 -d ':' |sort |uniq
+}
+
+#porovnava data a hleda soubory
+date_comparison(){
+
+	#cyklus projizdi radek po radku wedirc
+	while read -r line
+	do
+	    #do promenne radek ulozim cestu k souboru
+		radek=$(echo "$line" | cut -f1 -d ':')
+		#do date_log ulozim datum editace a prevedu na cislo
+		date_log=$(echo "$line" | cut -f2 -d ':' | sed "s/-//g")
+
+		#vybiram soubory jen ze zadaneho adresare
+		if [ "$current_path" = "$(dirname "$radek")" ]; then
+		 	
+		 	#kdyz je zadan argument -a
+			if [ "$arg_a" ]; then
+
+				#zapisi si do promenne pokud je mensi nebo rovno
+			 	if [ "$date_imput" -le "$date_log" ]; then
+			 		files="$files$radek " 
+			 	fi
+			
+			else
+				#kdyz je zadan argument -b
+				if [ "$date_imput" -gt "$date_log" ]; then
+			 		files="$files$radek " 
+			 	fi
+			fi
+		fi
+		
+	done < "$WEDI_RC"
+
+	#pokud je promenna po cyklu prazdna, odpovidajici soubor nebyl nalezen
+	if [ -z "$files"  ]; then
+		echo "ERROR: Takovy soubor neexistuje." >&2
+		exit 1
+	fi
+
+	#vyfiltruju unikatni vysledky na a oddelim jednodlive radky 
+	result=$(echo "$files" | tr ' ' '\n' | sort | sed '1d' | uniq)
+	echo "$result"
+}
+
+#./wedi
+if [ "$#" = "0" ]; then
+
+	current_path="$(realpath .)"
+	last_edit
+
+#./wedi adresar
+elif [ "$#" = "1" ] && [ -d "$1" ]; then 
+
+	current_path="$(realpath "$1")"
+	last_edit
+
+#./wedi -m
+elif [ "$#" = "1" ] && [ "$1" = "-m" ]; then 
+
+	current_path="$(realpath .)"
+	most_edit	
+
+#./wedi -m adresar
+elif [ "$#" = "2" ] && [ "$1" = "-m" ] && [ -d "$2" ]; then 
+
+	current_path="$(realpath "$2")"
+	most_edit	
+
+#./wedi soubor
+elif [ "$#" = "1" ] && [ -f "$1" ]; then 
+
+	cesta="$(realpath "$1")"
+	file_edit
+
+#./wedi -l
+elif [ "$#" = "1" ] && [ "$1" = "-l" ]; then
+
+	current_path=$(realpath .)
+	all_edited
+	
+#./wedi -l adresar
+elif [ "$#" = "2" ] && [ "$1" = "-l" ] && [ -d "$2" ]; then 
+
+	current_path="$(realpath "$2")"
+	all_edited
+
+#./wedi -a|-b datum 
+elif [ "$1" = "-a" ] || [ "$1" = "-b" ] && [ "$#" = "2" ]; then
+	current_path="$(realpath .)"
+
+	if [ "$OS" = "FreeBSD" ];then
+
+		if  ! gdate -d "$2" "+%Y-%m-%d">/dev/null 2>&1; then
+			echo "$2 je neplatne datum.">&2
+			exit 1
+		fi
+		
+		date_imput=$(gdate -d "$2" +"%Y-%m-%d" | sed "s/-//g") || echo chyba_data >&2
+
+	else
+		if  ! date -d "$2" "+%Y-%m-%d">/dev/null 2>&1; then
+			echo "$2 je neplatne datum.">&2
+			exit 1
+		fi
+		
+		date_imput=$(date -d "$2" +"%Y-%m-%d" | sed "s/-//g") || echo chyba_data >&2
+	fi
+	
+	if [ "$1" = "-a" ]; then
+		arg_a=true
+	fi
+
+	date_comparison
+
+
+#./wedi -a|-b datum adresar
+elif ([ "$1" = "-a" ] || [ "$1" = "-b" ]) && [ "$#" = "3" ] && [ -d "$3" ]; then
+
+	current_path="$(realpath "$3")"
+
+	if [ "$OS" = "FreeBSD" ];then
+		
+		if  ! gdate -d "$2" "+%Y-%m-%d">/dev/null 2>&1; then
+			echo "$2 je neplatne datum.">&2
+			exit 1
+		fi
+		
+		date_imput=$(gdate -d "$2" +"%Y-%m-%d" | sed "s/-//g") || echo chyba_data >&2
+
+	else
+		if  ! date -d "$2" "+%Y-%m-%d">/dev/null 2>&1; then
+			echo "$2 je neplatne datum.">&2
+			exit 1
+		fi
+		
+		date_imput=$(date -d "$2" +"%Y-%m-%d" | sed "s/-//g") || echo chyba_data >&2
+	fi
+
+	date_imput=$(echo "$2" | sed "s/-//g")
+	
+	if [ "$1" = "-a" ]; then
+		arg_a=true
+	fi
+
+	date_comparison
+
+else 
+	#argumenty neodpovidaji zadani
+	echo "ERROR: Argumenty jsou zadany spatne, nebo soubor ci slozka neexistuje." >&2
+	exit 1
+fi
+
+exit 0
