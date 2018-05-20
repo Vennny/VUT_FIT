@@ -42,7 +42,7 @@ vymaže a připraví na zápis nové sekvence znaků
 
 ## Odevzdání
 
--. Soubor fsm.vhd se zdrojovým kódem konečného automatu.
+- Soubor fsm.vhd se zdrojovým kódem konečného automatu.
 - Soubor accterm.bin, obsahující konfiguraci pro FPGA čip. Tento soubor naleznete
 v podadresáři build.
 - Soubor zprava.pdf s výstupní zprávou (ve formátu PDF) obsahující následující
@@ -50,5 +50,6 @@ informace:
   - Jméno a příjmení, login, přístupové kódy
   - Graf přechodu konečného automatu
   - Seznam výstupů s identifikací, zda se jedná o Mealyho nebo Moorovy výstupy.
- Ukázku výstupní zprávy naleznete v příloze č. 1.
+  - Ukázku výstupní zprávy naleznete v příloze č. 1.
+  
 Rozsah zprávy nesmí překročit jednu stranu formátu A4
