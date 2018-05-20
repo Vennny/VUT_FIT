@@ -66,7 +66,70 @@ double taylor_tan(double x, unsigned int n);
 kde x udává úhel a n rozvoj polynomu (počet členů). Taylorův polynom pro funkci tangens vypadá následovně:
 
 ![Taylor_tan](img/Taylor_tan.png?raw=true "Taylor_tan")
+přičemž řada čitatelů ve zlomcích koeficientů je [zde](https://oeis.org/A002430) a řada jmenovatelů ve zlomcích koeficientů je [zde](https://oeis.org/A156769). Ve svém programu použijte pouze 13 prvních koeficientů.
 
-přičemž řada čitatelů ve zlomcích koeficientů je zde a řada jmenovatelů ve zlomcích koeficientů je [zde](https://oeis.org/A002430). Ve svém programu použijte pouze 13 prvních koeficientů.
+##### 2. podúkol
+Tangens pomocí zřetězených zlomků (viz demonstrační cvičení) implementujte ve funkci s prototypem:
 
+```
+double cfrac_tan(double x, unsigned int n);
+```
+kde x udává úhel a n rozvoj zřetězeného zlomku:
+![Tan1](img/Tan1.png?raw=true "Tan1")
 
+nebo
+
+![Tan2](img/Tan2.png?raw=true "Tan2")
+
+##### Porovnání přesnosti výpočtu tangens
+Porovnání iteračních a zabudovaných výpočtů realizujte pro zadaný počet iterací. Výstup porovnání bude v podobě řádků obsahující následující:
+
+```
+I M T TE C CE
+```
+(odpovídající formátu "%d %e %e %e %e %e\n"), kde:
+
+- I značí počet iterací iteračního výpočtu,
+- M výsledek z funkce tan matematické knihovny,
+- T výsledek z funkce taylor_tan,
+- TE absolutní chybu mezi výpočtem pomocí Taylorova polynomu a matematickou knihovnou,
+- C výsledek z funkce cfrac_tan a
+- CE absolutní chybu mezi výpočtem pomocí zřetězených zlomků a matematickou knihovnou.
+
+Počet iterací udává interval daný argumenty programu <N;M>. Výstup programu tedy bude obsahovat N-M+1 řádků. První řádek tedy začíná číslem N.
+
+#### Měření
+Pro měření vzdálenosti a výšky použijte vámi implementovanou funkci cfrac_tan.
+
+V případě zadaného úhlu α i β vypište dvě čísla odpovídající délce d a výšce v (v tomto pořadí). Oba číselné údaje vypisujte formátovaným výstupem pomocí "%.10e", každý údaj samostatně na jeden řádek.
+
+### Příklady vstupů a výstupů
+Číselné údaje nemusí odpovídat vaší implementaci. Výsledek závisí na způsobu implementace a případné optimalizaci. Optimalizace hodnocena nebude.
+
+```
+$ ./proj2 --tan 1.024 6 10
+6 1.642829e+00 1.634327e+00 8.502803e-03 1.642829e+00 3.298801e-09
+7 1.642829e+00 1.639216e+00 3.613451e-03 1.642829e+00 1.794520e-11
+8 1.642829e+00 1.641294e+00 1.535615e-03 1.642829e+00 7.460699e-14
+9 1.642829e+00 1.642177e+00 6.525932e-04 1.642829e+00 4.440892e-16
+10 1.642829e+00 1.642552e+00 2.773337e-04 1.642829e+00 0.000000e+00
+```
+```
+$ ./proj2 -m 0.3 0.9
+4.8490922156e+00
+7.6106234032e+00
+```
+```
+$ ./proj2 -c 1.7 -m 0.15 1.3
+1.1248205560e+01
+4.2217188781e+01
+```
+
+## Hodnocení
+Na výsledném hodnocení mají hlavní vliv následující faktory:
+
+- implementace algoritmických schemat pro iterační výpočty,
+- volba funkcí a jejich parametrů pro výpočet měřených veličin,
+- výpočet tangens a porovnání přesnosti,
+- výpočet vzdálenosti a výšky,
+- ošetření neočekávaných stavů.
