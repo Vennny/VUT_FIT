@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c99 -pedantic -Wall -Wextra -Werror -DNDEBUG -lm
+CFLAGS=-std=c99 -pedantic -Wall -Wextra -Werror -lm
 
 proj2:proj2.o
 	$(CC) -o proj2 proj2.c
