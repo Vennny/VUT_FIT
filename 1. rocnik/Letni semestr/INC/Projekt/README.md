@@ -1,5 +1,9 @@
 # Přístupový terminál
 
+Moje řešení slouží pouze pro inspiraci. Hodnoceno 18/20. (-2b zpráva)
+
+## Zadání
+
 1. Seznamte se s přípravkem FITKit a způsobem připojení jeho periférií, zejména
 klávesnice a LCD displeje.
 2. Prostudujte si zdrojové kódy projektu v jazyce VHDL.
