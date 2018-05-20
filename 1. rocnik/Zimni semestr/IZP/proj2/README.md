@@ -75,6 +75,7 @@ Tangens pomocí zřetězených zlomků (viz demonstrační cvičení) implementu
 double cfrac_tan(double x, unsigned int n);
 ```
 kde x udává úhel a n rozvoj zřetězeného zlomku:
+
 ![Tan1](img/Tan1.png?raw=true "Tan1")
 
 nebo
