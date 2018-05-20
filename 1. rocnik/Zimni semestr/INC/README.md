@@ -1,1 +1,0 @@
-# Návrh číslicových systémů
