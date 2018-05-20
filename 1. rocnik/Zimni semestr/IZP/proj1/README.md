@@ -74,7 +74,7 @@ Je zakázané použít následující funkce:
 
 Na chyby za běhu programu reagujte obvyklým způsobem: Na neočekávaná vstupní data, formát vstupních dat nebo chyby při volání funkcí reagujte přerušením programu se stručným a výstižným chybovým hlášením na příslušný výstup a odpovídajícím návratovým kódem. Hlášení budou v kódování ASCII česky nebo anglicky.
 
-## Příklady vstupů a výstupů
+### Příklady vstupů a výstupů
 
 Pomocný soubor adres:
 
