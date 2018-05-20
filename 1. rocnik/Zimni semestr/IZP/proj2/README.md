@@ -66,6 +66,7 @@ double taylor_tan(double x, unsigned int n);
 kde x udává úhel a n rozvoj polynomu (počet členů). Taylorův polynom pro funkci tangens vypadá následovně:
 
 ![Taylor_tan](img/Taylor_tan.png?raw=true "Taylor_tan")
+
 přičemž řada čitatelů ve zlomcích koeficientů je [zde](https://oeis.org/A002430) a řada jmenovatelů ve zlomcích koeficientů je [zde](https://oeis.org/A156769). Ve svém programu použijte pouze 13 prvních koeficientů.
 
 ##### 2. podúkol
