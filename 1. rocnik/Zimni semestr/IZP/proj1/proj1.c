@@ -1,7 +1,7 @@
 /*
  * Soubor:  proj1.c
  * Datum:   2017/11/5
- * Autor:   Vennny
+ * Autor:   Václav Trampeška - xtramp00
  * Projekt: Práce s textem, projekt č. 1 pro předmět IZP
  */
 
