@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8">
+        <title>Realitní kancelář rReality - makléři</title>
+        <link rel="stylesheet" href="makleri.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+        <script>
+
+            function showDiv() {
+                var x = document.getElementById("textarea");
+                var y = document.getElementById("box");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    y.style.height = '1300px';
+                } else {
+                    x.style.display = "none";
+                    y.style.height = '900px';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <nav id="navbar">
+            <div class="logo">
+               <a href="http://www.stud.fit.vutbr.cz/~xtramp00/index.html"><img src="img/logo.png" alt="rReality"> </a>
+            </div>
+            <div class="menu">
+              <ul>
+                <li><a href="http://www.stud.fit.vutbr.cz/~xtramp00/index.html">HOME</a></li>
+                <li class="hover">
+                  <a>REALITY</a>
+                  <ul id="reality">
+                    <li><a href="prodej.html">CHCI PRODAT</a></li>
+                    <li><a href="nakup.html">CHCI KOUPIT</a></li>
+                  </ul>
+                </li>
+                <li><a href="makleri.html">NAŠI MAKLÉŘI</a></li>
+                <li class="hover">
+                  <a>O NÁS</a>
+                  <ul id="onas">
+                    <li><a href="historie.html">HISTORIE</a></li>
+                    <li><a href="kontakt.html">KONTAKT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </nav>
+    
+        <div id="main">           
+                <div class="header"> 
+                    <h1>Naši makléři</h1>
+                    <img src="img/wall.jpg" alt="background">
+                    <p>Naši makléři jsou profesionálové s mnohaletou praxí. Můžete se spolehnout, že odvedou stoprocentní práci k oboustranné spokojenosti.<p>
+                </div>
+
+                <div id="box">
+                    <div class="top">
+                       <h2>Makléři</h2>
+                     </div> 
+
+                     <div class="image">
+                         <img src="img/face.png" alt="Petr Novák">
+                         <img src="img/face.png" alt="Jiří Novotný">
+                         <img src="img/face2.png" alt="Anna Nová">
+                     </div>
+                     <div class="agents">
+                         <div class="agent">
+                            <p class="name">Ing. Petr Novák</p>
+                            <div class="info">
+                                <p>Tel.: +420 789 123 456</p>
+                                <p>email: <a href="mailto:novak@rreality.cz">novak@rreality.cz </a></p>
+                                <p><a href="#">webové stránky makléře</a></p>
+                                <p><a href="#">reference na makléře</a></p>
+                            </div>
+                        </div>
+
+                         <div class="agent">
+                            <p class="name">Mgr. Jiří Novotný</p>
+                            <div class="info">
+                                <p>Tel.: +420 777 345 456</p>
+                                <p>email: <a href="mailto:novotny@rreality.cz">novotny@rreality.cz </a></p>
+                                <p><a href="#">webové stránky makléře</a></p>
+                                <p><a href="#">reference na makléře</a></p>
+                            </div>
+                        </div>
+
+                         <div class="agent">
+                            <p class="name">Bc. Anna Nová</p>
+                            <div class="info">
+                                <p>Tel.: +420 758 123 987</p>
+                                <p>email: <a href="mailto:novak@rreality.cz">nova@rreality.cz </a></p>
+                                <p><a href="#">webové stránky makléře</a></p>
+                                <p><a href="#">reference na makléře</a></p>
+                            </div>
+                        </div>                       
+                    </div>   
+                    
+                </div>
+        </div>
+
+        <footer id="footer">
+            <div class="main">
+                <div class="kontakt">
+                    <div class="top">Kontakt</div>
+                    <ul>
+                        <li><strong>email:</strong> rreality@rreality.cz</li>
+                        <li><strong>Tel.:</strong> 789 123 456</li>
+                        <li><strong>adresa:</strong> Božetěchova 2, Brno-Královo Pole</li>
+                    </ul>
+                </div>
+
+                <div class="mapa">
+                    <div class="top">Mapa webu</div>
+                    <ul>
+                        <li><a href="index.html">Domů</a></li>
+                        <li>Reality
+                            <ul>
+                                <li><a href="prodej.html">Chci prodat</a></li>
+                                <li><a href="nakup.html">Chci koupit</a></li>
+                            </ul>
+                        </li>
+                            
+                        <li><a href="makleri.html">Naši makléři</a></li>
+                        <li>O nás
+                            <ul>
+                                <li><a href="historie.html">Historie firmy</a></li>
+                                <li><a href="kontakt.html">Kontakt</a></li>
+                            </ul>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; Copyright 2018. rReality</p>
+            </div>
+        </footer>
+    </body>
+</html>

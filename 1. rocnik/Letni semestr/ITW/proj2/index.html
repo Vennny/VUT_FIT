@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8">
+        <title>Realitní kancelář rReality</title>
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <script>
+
+            function showDiv() {
+                var x = document.getElementById("textarea");
+                var y = document.getElementById("box");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    y.style.height = '1300px';
+                } else {
+                    x.style.display = "none";
+                    y.style.height = '900px';
+                }
+            }
+
+            function noJS(){
+                var x = document.getElementById("textarea");
+                var y = document.getElementById("box");
+                x.style.display = "none";
+                y.style.height = '900px';
+            }
+
+        </script>
+    </head>
+    <body onload="noJS()">
+        <nav id="navbar">
+            <div class="logo">
+               <a href="http://www.stud.fit.vutbr.cz/~xtramp00/index.html"><img src="img/logo.png" alt="rReality"> </a>
+            </div>
+            <div class="menu">
+              <ul>
+                <li><a href="http://www.stud.fit.vutbr.cz/~xtramp00/index.html">HOME</a></li>
+                <li class="hover">
+                  <a>REALITY</a>
+                  <ul id="reality">
+                    <li><a href="prodej.html">CHCI PRODAT</a></li>
+                    <li><a href="nakup.html">CHCI KOUPIT</a></li>
+                  </ul>
+                </li>
+                <li><a href="makleri.html">NAŠI MAKLÉŘI</a></li>
+                <li class="hover">
+                  <a>O NÁS</a>
+                  <ul id="onas">
+                    <li><a href="historie.html">HISTORIE</a></li>
+                    <li><a href="kontakt.html">KONTAKT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <div id="main">
+                <div class="header">
+                    <h1>Připojte se k tisícům našich spokojených zákazníků a i Vy s námi najděte nový domov.</h1>
+                    <img src="img/wall.jpg" alt="background">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="box">
+                    <div class="top">
+                       <h2>Nejnovější nabídky</h2>
+                     </div>
+                    <div class="offers">
+                        <h3>Prodej 3+kk bytu, 80m², Brno</h3>
+                        <img src="img/pokoj.jpg" alt="room">
+                        <ul>
+                            <li>Přidáno dnes</li>
+                            <li>18 000 Kč/měsíc</li>
+                            <li>Božetěchova 2, Brno-Královo Pole</li>
+                        </ul>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce suscipit libero eget elit. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui.</p>
+                        <button onclick="showDiv()">Kontaktovat</button>
+                        <div id="textarea">
+                            <textarea class="email" placeholder="Vaše emailová adresa"></textarea>
+                            <textarea class="text" placeholder="Vaše zpráva..."></textarea>
+
+                            <button>Odeslat</button>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+
+        <footer id="footer">
+            <div class="main">
+                <div class="kontakt">
+                    <div class="top">Kontakt</div>
+                    <ul>
+                        <li><strong>email:</strong> rreality@rreality.cz</li>
+                        <li><strong>Tel.:</strong> 789 123 456</li>
+                        <li><strong>adresa:</strong> Božetěchova 2, Brno-Královo Pole</li>
+                    </ul>
+                </div>
+
+                <div class="mapa">
+                    <div class="top">Mapa webu</div>
+                    <ul>
+                        <li><a href="index.html">Domů</a></li>
+                        <li>Reality
+                            <ul>
+                                <li><a href="prodej.html">Chci prodat</a></li>
+                                <li><a href="nakup.html">Chci koupit</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="makleri.html">Naši makléři</a></li>
+                        <li>O nás
+                            <ul>
+                                <li><a href="historie.html">Historie firmy</a></li>
+                                <li><a href="kontakt.html">Kontakt</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; Copyright 2018. rReality</p>
+            </div>
+        </footer>
+    </body>
+</html>

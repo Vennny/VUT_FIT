@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8">
+        <title>Realitní kancelář rReality - chci koupit</title>
+        <link rel="stylesheet" href="nakup.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <script>
+
+            function showDiv() {
+                var x = document.getElementById("textarea");
+                var y = document.getElementById("box");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    y.style.height = '1300px';
+                } else {
+                    x.style.display = "none";
+                    y.style.height = '900px';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <nav id="navbar">
+            <div class="logo">
+               <a href="ihttp://www.stud.fit.vutbr.cz/~xtramp00/index.html"><img src="img/logo.png" alt="rReality"> </a>
+            </div>
+            <div class="menu">
+              <ul>
+                <li><a href="http://www.stud.fit.vutbr.cz/~xtramp00/index.html">HOME</a></li>
+                <li class="hover">
+                  <a>REALITY</a>
+                  <ul id="reality">
+                    <li><a href="prodej.html">CHCI PRODAT</a></li>
+                    <li><a href="nakup.html">CHCI KOUPIT</a></li>
+                  </ul>
+                </li>
+                <li><a href="makleri.html">NAŠI MAKLÉŘI</a></li>
+                <li class="hover">
+                  <a>O NÁS</a>
+                  <ul id="onas">
+                    <li><a href="historie.html">HISTORIE</a></li>
+                    <li><a href="kontakt.html">KONTAKT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </nav>
+    
+        <div id="main">           
+                <div class="header"> 
+                    <h1>Chci koupit nemovitost</h1>
+                    <img src="img/wall.jpg" alt="background">
+                    <p>Pomůžeme vám s výběrem té správné nemovitosti pro vás. Vyplňte formulář níže a neztrácejte čas listováním mezi nabídkami.</p>
+                </div>
+                <div id="box">
+                    <p>Pokud naopak chcete nemovitost prodat, klikněte <a href="prodej.html">zde</a></p>
+                    <br>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce suscipit libero eget elit. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui.</p>
+                    <p><strong>Chci koupit nemovitost – formulář</strong></p>
+                    <p>Obec ve které nemovitost hledám</p>
+                    <textarea rows="1" cols="65"></textarea>
+
+                    <form>
+                        Mám zájem nemovitost <br>
+                        koupit
+                        <input type="radio" name="typ" id="koupit" value="koupit">
+                        pronajmout
+                        <input type="radio" name="typ" id="pronajmout" value="pronajmout">
+                    </form>
+
+                    <form>
+                        Nabízím <br>
+                        byt
+                        <input type="radio" name="typ" id="byt" value="byt">
+                        dům
+                        <input type="radio" name="typ" id="dům" value="dům">
+                        pozemek
+                        <input type="radio" name="typ" id="pozemek" value="pozemek">
+                        kancelářské prostory
+                        <input type="radio" name="typ" id="kancelar" value="kancelar">
+                        obchod
+                        <input type="radio" name="typ" id="obchod" value="obchod">
+                        jiné
+                        <input type="radio" name="typ" id="jiné" value="jiné">
+                    </form>
+                    <p>Jméno a příjmení</p>
+                    <textarea rows="1" cols="65"></textarea>
+                    <p>Email</p>
+                    <textarea rows="1" cols="30"></textarea>
+                    <p>Telefon</p>
+                    <textarea rows="1" cols="30"></textarea>
+                    <p>Prostor pro poznámky</p>
+                    <textarea rows="6" cols="65"></textarea>
+                    <button>Odeslat</button>
+
+                </div>
+        </div>
+
+        <footer id="footer">
+            <div class="main">
+                <div class="kontakt">
+                    <div class="top">Kontakt</div>
+                    <ul>
+                        <li><strong>email:</strong> rreality@rreality.cz</li>
+                        <li><strong>Tel.:</strong> 789 123 456</li>
+                        <li><strong>adresa:</strong> Božetěchova 2, Brno-Královo Pole</li>
+                    </ul>
+                </div>
+
+                <div class="mapa">
+                    <div class="top">Mapa webu</div>
+                    <ul>
+                        <li><a href="index.html">Domů</a></li>
+                        <li>Reality
+                            <ul>
+                                <li><a href="prodej.html">Chci prodat</a></li>
+                                <li><a href="nakup.html">Chci koupit</a></li>
+                            </ul>
+                        </li>
+                            
+                        <li><a href="makleri.html">Naši makléři</a></li>
+                        <li>O nás
+                            <ul>
+                                <li><a href="historie.html">Historie firmy</a></li>
+                                <li><a href="kontakt.html">Kontakt</a></li>
+                            </ul>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; Copyright 2018. rReality</p>
+            </div>
+        </footer>
+    </body>
+</html>

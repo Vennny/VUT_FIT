@@ -1,0 +1,227 @@
+@media print {
+    #navbar, #footer{
+        display: none;
+    }
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+body{
+	background-color: #fefff9;
+}
+@media print {
+    #navbar, #footer{
+        display: none;
+    }
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+body{
+	background-color: #fefff9;
+}
+.logo {
+	position: absolute;
+	left: 20%;
+	top: 5px;
+	margin: auto;
+}
+
+.logo img{
+	display: block;
+ 	height: 180px;
+}
+.menu{
+	overflow: auto;
+ 	 padding: 100px 0;
+	margin-left: 40%;
+	font-size: 35px;
+}
+.menu ul li{
+  display: inline-block;
+}
+.menu #reality, .menu #onas{
+  display: none;
+  position: absolute;
+  font-size: 25px;
+}
+.menu #reality li, .menu #onas li{
+  display: block;
+}
+.menu a{
+  cursor: pointer;
+  display: block;
+	font-weight: bold;
+	text-decoration: none;
+	color: #006795;
+	font-family: 'PT Sans', sans-serif;
+}
+.menu a:hover{
+	text-decoration: underline;
+}
+.menu > ul > li{
+  padding-right: 20px;
+}
+#navbar .menu .hover:hover > ul{
+  display: block;
+}
+
+
+.header {
+	position: relative;
+	text-align: center;
+}
+
+.header img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    height: 50%;
+    max-height: 100%;
+    max-width: 100%;
+    opacity: 0.3;
+}
+
+.header h1, .header p{
+	font-family: 'PT Sans', sans-serif;
+	font-size: 45px;
+	font-weight: bold;
+	text-decoration: none;
+	color:#001054;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	padding-top: 120px;
+}
+
+.header p{
+	top: 65%;
+	font-size: 30px;
+}
+
+#box {
+	font-family: 'PT Sans', sans-serif;
+	margin-top: 50px;
+	border: 2px solid #eee;
+	left: 50%;
+	background-color: white;
+	padding: 15px 10px 10px 10px;
+	width:800px; 
+	height: 1050px;
+	margin:50px auto;
+	box-shadow: 0px 0px 2px 2px grey;
+}
+#box p strong{
+	color: #006795;
+	font-size: 30px;
+	text-align: center;
+}
+#box p, #box form{
+	width: 600px;
+	margin-top: 20px;
+	margin-right: 90px;
+	margin-left: 100px;
+    float: left; 
+    font-family: 'PT Sans', sans-serif;
+    font-size: 15px;
+    color:#006795;
+}
+
+#box textarea{
+	margin-top: 5px;
+	margin-right: 90px;
+	margin-left: 100px;
+    float: left; 
+	font-family: 'PT Sans', sans-serif;
+	background-color: #f9f9f9;
+	color:#556060;
+	border: 1px solid #ededed;
+	padding: 4px 4px;
+}
+
+#box input{
+	margin-right:  10px;
+}
+
+#box button{
+    margin: 50px 300px;
+   	border: none;
+	background-color: #006795;
+	color: white;
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	border-radius: 12px;
+}
+
+#box button:hover{
+	background-color: #264fff;
+}
+
+#footer{
+	text-decoration: none;
+	color: white;
+	float: left;
+	width: 100%;
+	background: #006795;
+	padding-top: 30px;
+	padding-bottom: 20px;
+	font-family: 'PT Sans', sans-serif;
+
+}
+
+#footer .kontakt{
+	margin-left: 25%;
+	font-size: 15px;
+	float: left;
+	width: 500px;
+	height: 200px;
+}
+
+#footer .kontakt .top, #footer .mapa .top{
+	font-size: 20px;
+	font-weight: bold;
+	color: #a0e1ff;
+}
+
+#footer .mapa{
+	color: white;
+	width: 400px;
+	margin-left: 50%;
+	font-size: 15px;
+}
+#footer .mapa li ul{
+	list-style: none;
+}
+
+#footer .mapa li ul a{
+	margin-left: 20px;
+}
+
+#footer .mapa a{
+	text-decoration: none;
+	color: white;
+}
+
+#footer .mapa a:hover{
+	text-decoration: underline;
+}
+
+.copyright{
+	width: 100%;
+	display: inline-block;
+	margin-top: 20px;
+	text-align: center;
+	padding: 15px;
+}
