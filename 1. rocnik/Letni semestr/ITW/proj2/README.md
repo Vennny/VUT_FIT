@@ -6,6 +6,7 @@ Vytvořte stránky pro imaginární zařízení v jedné z následujících obla
 
 - Stavební firma
 - Realitní kancelář
+
 Zvolte takový název zařízení, aby se neshodoval s názvem žádné existující organizace, kterou lze na WWW již nalézt (viz. Google).
 
 Navrhněte vhodnou informační architekturu webu. Web musí mít nejméně tři hlavní informační sekce (např. základní informace, služby, kontakt), každá bude tvořena nejméně dvěma dokumenty (např. rodinné domy, byty). Web bude disponovat:
