@@ -29,7 +29,7 @@ Navíc připravte tiskovou verzi stylu, která se použije při tisku stránky z
 
 Na úvodní stránce implementujte pomocí JavaScriptu jednu oblast (box), která bude při prvním zobrazení skrytá a místo ní bude zobrazen pouze její titulek, ikona apod. Po kliknutí na ikonu se zobrazí obsah oblasti a dalším kliknutím se opět skryje. Pomocí cookies implementujte ukládání stavu těchto boxů tak, aby uživatel viděl při návratu na stránku boxy v takovém stavu (zobrazené nebo nezobrazené), v jakém je zanechal. Typické použití: část nabídky nebo doplňkové informace ve sloupci s nabídkou, podrobnější kontaktní údaje, podrobnější informace k údajům v textu.
 
-##Pokyny ke zpracování
+## Pokyny ke zpracování
 
 Výchozí dokument se bude jmenovat index.html
 Texty použité na stránkách si vymyslete. V místech, kde lze předpokládat delší souvislý text (profil apod.) je možno použít generátor výplňkového textu (Lorem Ipsum, Pseudo-čeština). Použijte dostatečné množství textu formátovaného v souladu s předpokládaným obsahem tak, aby bylo patrné, jak bude stránka ve výsledku vypadat. Nepoužívejte souvislý text ze stránek třetích stran.
@@ -46,7 +46,7 @@ Vytvořené stránky umístěte na libovolný server přístupný z Internetu (n
 Titulek webu (záhlaví) bude fungovat jako odkaz na zvolené umístění webu (t.j. na hlavní stránku absolutním URL).
 Veškerý kód musí být vlastním dílem studenta. Při návrhu vzhledu je možno se inspirovat existujícími stránkami, nelze však převzít žádný kód z cizích webů ani z volně dostupných knihoven. Totéž platí i pro JavaScriptový kód. Využití obecných JS knihoven (např. JQuery) je povoleno. CSS frameworky (např. Bootstrap) nejsou povoleny. Přestože se frameworky v praxi často využívají, cílem projektu je ukázat vlastní zvládnutí technologií probíraných v rámci ITW.
 
-##Odevzdání
+## Odevzdání
 
 Projekt se odevzdává jako jeden archiv ZIP, který obsahuje všechny soubory webu. Jméno odevzdávaného souboru musí být vaslogin.zip. Tento soubor se odevzdá přes IS FIT. Pokud narazíte na limit velikosti odevzdávaného souboru (cca. 2 MB), odevzdejte v archivu pouze kód bez obrázků a dalších dat. Verzi dostupnou na WWW však samozřejmě nechte kompletní.
 
