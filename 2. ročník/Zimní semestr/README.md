@@ -1,5 +1,5 @@
 # Předměty zimního semestru druhého ročníku
 
-**IAL** - Algoritmy  
-**IFJ** - Formální jazyky a překladače  
-**ISS** - Signály a systémy  
+**IAL** - Algoritmy /	Algorithms  
+**IFJ** - Formální jazyky a překladače / Formal Languages and Compilers  
+**ISS** - Signály a systémy /	Signals and Systems
