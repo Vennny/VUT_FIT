@@ -1,2 +1,4 @@
 # Předměty letniho semestru 1. ročníku BIT 2017/18
-**IZP** - Základy programování / Introduction to Programming Systems
+**INC** - Návrh číslicových systémů / Digital Systems Design  
+**IOS** - Operační systémy  /	Operating Systems  
+**ITW** - Tvorba webových stránek / Web Design
