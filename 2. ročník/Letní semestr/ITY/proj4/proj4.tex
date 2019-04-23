@@ -1,0 +1,37 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[left=2cm,text={17cm, 24cm},top=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{times}
+\newcommand{\bibtex}{\textsc{Bib}\negthinspace\TeX}
+\usepackage{etoolbox}
+\apptocmd{\thebibliography}{\raggedright}{}{}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+{\Huge\textsc{Vysoké učení technické v~Brně}}\\
+\vspace{0.7em}{\huge\textsc{Fakulta informačních technologií}}\\
+\vspace{\stretch{0.382}}
+{\LARGE Typografie a publikování\,--\,3. projekt}\\
+\Huge {Citace\\}
+\vspace{\stretch{0.618}}
+\end{center}
+{\Large\today\hfill Václav Trampeška}
+\end{titlepage}
+
+\section{Co je to \TeX}
+\TeX je program pro počítačovou sazbu dokumentů. Byl vytvořen v~roce 1978 americkým profesorem Stanfordovy univerzity Donaldem Ervinem Knuthem. Nástroj obsahuje přes 300 příkazů, díky kterým \TeX oproti svým konkurentům umožňuje kvalitnější a~konzistentí zapisování jak obyčejného textu, tak především matematických vzorců, algoritmů a~podobných struktur \cite{tex_online}. Další nespornou výhodou nástroje je to, že je multiplatformní \cite{clanek1}. Autor popsal používání nástroje \TeX také ve své knize \cite{tex_book}.
+
+\section{Co je to \LaTeX}
+\LaTeX je neznámější nadstavbou \TeX u. Byl vytvořen Lesliem Lamportonem v~roce 1984. \LaTeX je oproti \TeX u jednodušší na zápis a používání, přičemž neztrácí žádné jeho výhody. Myšlenkou \LaTeX u je usměrnit autory k tomu, aby kladli důraz hlavně na obsah dokumentu a~ne na jeho vzhled. \cite{latex_about} \LaTeX je vhodný hlavně na středně dlouhé a~dlouhé dokumenty. Není problém pomocí něho i~vytvořit prezentaci \cite{clanek2}. Využití \LaTeX u se rozšířilo natolik, že se v něm dnes běžně sázejí i knihy \cite{tex_online2} nebo lze také vykreslovat vektorovou grafiku \cite{serial}.
+
+\section{Jak se naučit \LaTeX}
+\LaTeX se zprvu může zdát mocným, ale složitým nástrojem. Pokud ale člověk upustí od předsudků a~nahlédne pod pokličku \LaTeX u zjistí, že vytvářet dokumenty vlastně není složité. Toto pomyslné náhlednutí nám mohou umožnit jak kvanta internetových návodů, tak i~knihy jako Latex: podrobný průvodce\cite{latex_pruvodce} dostupný v knihovně na VUT FIT. \LaTeX je i~skvelým nástrojem na psaní bakalářských prací. Některým studentům dokonce zalíbí natolik, že se stane i~samotným tématem práce \cite{prace1}\cite{prace2}.
+
+
+\newpage
+\renewcommand{\refname}{Reference}
+\bibliography{bibliografie}
+\bibliographystyle{czplain}
+\end{document}
