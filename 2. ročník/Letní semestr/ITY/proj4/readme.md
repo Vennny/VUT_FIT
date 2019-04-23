@@ -1,2 +1,2 @@
 # 4. projekt
-Hodnocen 15/15b
+Hodnocen 11.5/15b
