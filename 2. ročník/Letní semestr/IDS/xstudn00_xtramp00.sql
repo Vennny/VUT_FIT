@@ -1,6 +1,6 @@
 ------------------------------------------------
 -- IDS projekt
--- Ondøej Studnièka, Václav Trampeška
+-- OndÅ™ej StudniÄka, VÃ¡clav TrampeÅ¡ka
 -- 25. 4. 2019
 ------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE zakaznik
     prijmeni VARCHAR2(70),
     telefon VARCHAR2(15) CHECK(REGEXP_LIKE(telefon,'^\+(420|421)[0-9]{9}$')),
     email VARCHAR2(320) CHECK(REGEXP_LIKE(email,'^\w.+@\w.+(\.)(cz|sk|com)$')),
-    vekova_skupina VARCHAR2(15) NOT NULL CHECK (vekova_skupina='Dítì' or vekova_skupina='Student' or vekova_skupina='Dospìlı' or vekova_skupina='Dùchodce' or vekova_skupina='ZTP'),
+    vekova_skupina VARCHAR2(15) NOT NULL CHECK (vekova_skupina='DÃ­tÃ¬' or vekova_skupina='Student' or vekova_skupina='DospÃ¬lÃ½' or vekova_skupina='DÃ¹chodce' or vekova_skupina='ZTP'),
     rodne_cislo NUMBER,
     CONSTRAINT zakaznik_FK_zamestnanec FOREIGN KEY (rodne_cislo) REFERENCES zamestnanec(rodne_cislo)
 );
@@ -149,8 +149,8 @@ BEGIN
 END;
 /
 
--- trigger na zjištìní jestli je sál ji obsazen
--- pokud je sál obsazen v dobu, kdy chce uivatel naplánovat další, tak dojde k vyvolání vyjímky
+-- trigger na zjiÅ¡tÄ›nÃ­ jestli je sÃ¡l jiÅ¾ obsazen
+-- pokud je sÃ¡l obsazen v dobu, kdy chce uÅ¾ivatel naplÃ¡novat dalÅ¡Ã­, tak dojde k vyvolÃ¡nÃ­ vyjÃ­mky
 
 CREATE OR REPLACE TRIGGER obsazenost_salu
 BEFORE INSERT ON promitani
@@ -167,7 +167,7 @@ BEGIN SELECT NVL((
             INTO je_promitano FROM DUAL;
                      
 IF je_promitano > 0 THEN
-    RAISE_APPLICATION_ERROR(-20100, 'Sál je v tuto dobu ji vyuit.');
+    RAISE_APPLICATION_ERROR(-20100, 'SÃ¡l je v tuto dobu jiÅ¾ vyuÅ¾it.');
 END IF;
 END;
 /
@@ -176,11 +176,11 @@ END;
 -- PROCEDURES
 -----------------------------------
 
--- povolení vıpisù
+-- povolenÃ­ vÃ½pisÃ¹
 SET serveroutput ON;
 
 
--- procedura na vıpis percentuálního zastoupení rùznıch vìkovıch skupin zákazníkù v databázi
+-- procedura na vÃ½pis percentuÃ¡lnÃ­ho zastoupenÃ­ rÅ¯znÃ½ch vÄ›kovÃ½ch skupin zÃ¡kaznÃ­kÃ¹ v databÃ¡zi
 
 CREATE OR REPLACE PROCEDURE vekove_skupiny_zakazniku_procentualne AS
   CURSOR zakaznici IS 
@@ -205,13 +205,13 @@ CREATE OR REPLACE PROCEDURE vekove_skupiny_zakazniku_procentualne AS
 
       IF zkznk.vekova_skupina = 'ZTP' THEN
         ZTP := ZTP+1;
-      ELSIF zkznk.vekova_skupina = 'Dùchodce' THEN
+      ELSIF zkznk.vekova_skupina = 'DÃ¹chodce' THEN
         duchodci := duchodci+1;
-      ELSIF zkznk.vekova_skupina = 'Dospìlı' THEN
+      ELSIF zkznk.vekova_skupina = 'DospÃ¬lÃ½' THEN
         dospeli := dospeli+1;
       ELSIF zkznk.vekova_skupina = 'Student' THEN
         studenti := studenti+1;
-      ELSIF zkznk.vekova_skupina = 'Dítì' THEN
+      ELSIF zkznk.vekova_skupina = 'DÃ­tÃ¬' THEN
         deti := deti+1;
       END IF;
     END LOOP;  
@@ -219,7 +219,7 @@ CREATE OR REPLACE PROCEDURE vekove_skupiny_zakazniku_procentualne AS
     IF celkem = 0 THEN
       RAISE NO_DATA_FOUND;
     END IF;
-    dbms_output.put_line('Procentuální rozdìlení zákazníkù podle vìkovıch skupin:');
+    dbms_output.put_line('ProcentuÃ¡lnÃ­ rozdÃ¬lenÃ­ zÃ¡kaznÃ­kÃ¹ podle vÃ¬kovÃ½ch skupin:');
     dbms_output.put_line('Deti      : '|| ROUND((deti/celkem)*100,1) ||'%');
     dbms_output.put_line('Studenti  : '|| ROUND((studenti/celkem)*100,1) ||'%');
     dbms_output.put_line('Dospeli   : '|| ROUND((dospeli/celkem)*100,1) ||'%');
@@ -228,13 +228,13 @@ CREATE OR REPLACE PROCEDURE vekove_skupiny_zakazniku_procentualne AS
     CLOSE zakaznici;
   EXCEPTION
     WHEN NO_DATA_FOUND THEN
-      RAISE_APPLICATION_ERROR(-20101, 'Nebyli nalezeni ádní zákazníci.');
+      RAISE_APPLICATION_ERROR(-20101, 'Nebyli nalezeni Å¾Ã¡dnÃ­ zÃ¡kaznÃ­ci.');
     WHEN OTHERS THEN
       RAISE_APPLICATION_ERROR(-20102, 'Chyba, co se nestane.');
   END;
 /
 
--- procedura na zjisteni celkovıch vıdìlkù jednotlivıch filmù 
+-- procedura na zjisteni celkovÃ½ch vÃ½dÄ›lkÅ¯ jednotlivÃ½ch filmÅ¯ 
 
 CREATE OR REPLACE PROCEDURE celkova_trzba_jednotlivych_filmu AS
     film_id NUMBER;
@@ -257,7 +257,7 @@ CREATE OR REPLACE PROCEDURE celkova_trzba_jednotlivych_filmu AS
   trzba NUMBER;
   
   BEGIN
-    dbms_output.put_line('Celkové trby jednotlivıch filmù:');
+    dbms_output.put_line('CelkovÃ© trÅ¾by jednotlivÃ½ch filmÃ¹:');
     OPEN cursor_film;
     LOOP
       FETCH cursor_film INTO flm;
@@ -296,22 +296,22 @@ CREATE OR REPLACE PROCEDURE celkova_trzba_jednotlivych_filmu AS
 --           INSERT INTO TABLES
 ------------------------------------------------
 
-INSERT INTO multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Plzeò', 'Nádraní', 20, 30100);
-INSERT INTO multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Praha', 'Jana Nepomuckého', 361, 10000);
-INSERT INTO multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Ostrava', 'Hlavní', 1024, 70030);
+INSERT INTO multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('PlzeÃ²', 'NÃ¡draÅ¾nÃ­', 20, 30100);
+INSERT INTO multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Praha', 'Jana NepomuckÃ©ho', 361, 10000);
+INSERT INTO multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Ostrava', 'HlavnÃ­', 1024, 70030);
 
-INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, postaveni, id_kino) VALUES (6851034606, 'Alex', 'Petr', 'Novotnı', date '1968-01-03', 'Plzeò', 'Poštovní', 321, 30100, 'novotny', '12345', 'v', 1);
-INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, id_kino) VALUES (9710110321, 'Jakub', 'Jan', 'Slovák', date '1997-10-11', 'Plzeò', 'Sportovní', 25, 30100, 'slovak', '67890', 1);
-INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, postaveni, id_kino) VALUES (8351293112, 'Alexandra', 'Lucie', 'Procházková', date '1983-01-29', 'Praha', 'V Koutì', 1021, 10000, 'prochazkova', '13579', 'v', 2);
-INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, id_kino) VALUES (6906302589, 'Václav', 'David', 'Macháèek', date '1969-06-30', 'Plzeò', 'Okruní', 137, 10000, 'machacek', '24680', 2);
-INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, postaveni, id_kino) VALUES (9210240546, 'Stanislav', 'Petr', 'Koutnı', date '1992-10-24', 'Ostrava', 'Báòská', 42, 70030, 'koutny', '14702', 'v', 3);
-INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, id_kino) VALUES (8358218564, 'Aneta', 'Anna', 'Bystøická', date '1983-08-21', 'Ostrava', 'Opavská', 256, 70030, 'bystricka', '35671', 3);
+INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, postaveni, id_kino) VALUES (6851034606, 'Alex', 'Petr', 'NovotnÃ½', date '1968-01-03', 'PlzeÃ²', 'PoÅ¡tovnÃ­', 321, 30100, 'novotny', '12345', 'v', 1);
+INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, id_kino) VALUES (9710110321, 'Jakub', 'Jan', 'SlovÃ¡k', date '1997-10-11', 'PlzeÃ²', 'SportovnÃ­', 25, 30100, 'slovak', '67890', 1);
+INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, postaveni, id_kino) VALUES (8351293112, 'Alexandra', 'Lucie', 'ProchÃ¡zkovÃ¡', date '1983-01-29', 'Praha', 'V KoutÃ¬', 1021, 10000, 'prochazkova', '13579', 'v', 2);
+INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, id_kino) VALUES (6906302589, 'VÃ¡clav', 'David', 'MachÃ¡Ã¨ek', date '1969-06-30', 'PlzeÃ²', 'OkruÅ¾nÃ­', 137, 10000, 'machacek', '24680', 2);
+INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, postaveni, id_kino) VALUES (9210240546, 'Stanislav', 'Petr', 'KoutnÃ½', date '1992-10-24', 'Ostrava', 'BÃ¡Ã²skÃ¡', 42, 70030, 'koutny', '14702', 'v', 3);
+INSERT INTO zamestnanec(rodne_cislo, jmeno, prostredni_jmeno, prijmeni, datum_narozeni, mesto, ulice, cislo_popisne, postovni_smerovaci_cislo, login, heslo, id_kino) VALUES (8358218564, 'Aneta', 'Anna', 'BystÃ¸ickÃ¡', date '1983-08-21', 'Ostrava', 'OpavskÃ¡', 256, 70030, 'bystricka', '35671', 3);
 
-INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('Nedotknutelní', 'Komediální drama', 113, 'èeskı', 'FRA', 'Olivier Nakache, Eric Toledano', 'François Cluzet, Omar Sy, Anne Le Ny, Audrey Fleurot, Joséphine de Meaux, Clotilde Mollet, Alba Ga?a Kraghede Bellugi, Cyril Mendy, Salimata Kamate, Grégoire Oestermann, Dominique Daguier, François Caron, Christian Ameri, Thomas Solivéres, Dorothée Briere, Émilie Caen, Sylvain Lazard, Jean-François Cayrey, François Bureloup', 'Ochrnutı a bohatı aristokrat Philippe si za svého nového opatrovníka vybere Drisse, ivelného mladíka z pøedmìstí, kterého právì propustili z vìzení. Jinımi slovy - najde si na tuto práci tu nejménì vhodnou osobu. Podaøí se jim však propojit nemoné: Vivaldiho a populární hudbu, serióznost a oviální vtípky, luxusní obleky a tepláky. Bláznivım, zábavnım, silnım, neoèekávanım a hlavnì „nedotknutelnım“, pøesnì takovım se stane jejich pøátelství… Komedie s dramatickou zápletkou o tom, e ani od krku po prsty u nohou nepohyblivı èlovìk odkázanı na pomoc druhıch, nemusí ztratit smysl ivota. A o tom, e i nejménì pravdìpodobné spojení melancholického multimilionáøe a extrovertního recidivisty mùe humornì zapùsobit na diváka a mùe se z nìj stát kasovní trhák.', 'Ano');
-INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('Fantastická zvíøata: Grindelwaldovy zloèiny', 'Dobrodrunı', 134, 'anglickı', 'UK', 'David Yates', 'Eddie Redmayne, Katherine Waterston, Dan Fogler, Johnny Depp, Jude Law, Alison Sudol, Ezra Miller, Zoë Kravitz, Claudia Kim, Carmen Ejogo, Jessica Williams, Ólafur Darri Ólafsson, Callum Turner, Victoria Yeates, Poppy Corby-Tuech, Brontis Jodorowsky, William Nadylam, Fiona Glascott, Derek Riddell, Kevin Guthrie, David Sakurai', 'Na konci prvního filmu KOKUSA (Kouzelníckı kongres USA) zajme s pomocí Mloka Scamandera (Eddie Redmayne) mocného èernoknìníka Gellerta Grindelwalda (Johnny Depp). Grindelwald ale splnil svou hrozbu, e uteèe z vazby, a zaèal shromaïovat své stoupence, z nich vìtšina vùbec nic netušila o jeho skuteènıch cílech: pøipravit vládu èistokrevnıch èarodìjù nad všemi nemagickımi bytostmi. Ve snaze zmaøit Grindelwaldovy plány, Albus Brumbál (Jude Law) získá svého bıvalého studenta Mloka Scamandera, kterı souhlasí s tím, e pomùe, ani by si uvìdomoval, jakému nebezpeèí se tím vystavuje. Bitevní linie jsou vytyèeny a ve stále více znesváøeném svìtì èarodìjù je podrobena zkoušce láska a loajalita, dokonce i mezi nejvìrnìjšími pøáteli a rodinou.', 'Ano');
-INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('Mlèení jehòátek', 'Filmové drama', 138, 'èeskı', 'USA', 'Jonathan Demme', 'Jodie Foster, Anthony Hopkins, Scott Glenn, Anthony Heald, Ted Levine, Frankie Faison, Kasi Lemmons, Brooke Smith, Obba Babatundé, Diane Baker, Roger Corman, Charles Napier, Cynthia Ettinger, Chris Isaak, Daniel von Bargen, Ted Monte, George A. Romero, Tracey Walter, Stuart Rudin, Brent Hinkley, John W. Iwanonkiw, John Hall', 'Clarice Starlingová, nadaná studentka akademie FBI, je pøidìlena agentu Crawfordovi vyšetøujícímu pøípad masového vraha Buffalo Billa, kterı své obìti stahuje z kùe. Clarice navštíví v baltimorské vìzeòské nemocnici bıvalého vynikajícího psychiatra Hannibala Lectera, odsouzeného na doivotí za sérii brutálních vrad a kanibalismus, kterı by o vrahovi mohl nìco vìdìt. Odsouzenı psychiatr Clarice zároveò dìsí a fascinuje. Kdy je masovım vrahem unesena dcera senátorky Martinové, nabídne Clarice Lecterovi pøijatelnìjší vìzeòské podmínky vımìnou za informaci, vedoucí k dopadení Buffalo Billa...', 'Ne');
+INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('NedotknutelnÃ­', 'KomediÃ¡lnÃ­ drama', 113, 'Ã¨eskÃ½', 'FRA', 'Olivier Nakache, Eric Toledano', 'FranÃ§ois Cluzet, Omar Sy, Anne Le Ny, Audrey Fleurot, JosÃ©phine de Meaux, Clotilde Mollet, Alba Ga?a Kraghede Bellugi, Cyril Mendy, Salimata Kamate, GrÃ©goire Oestermann, Dominique Daguier, FranÃ§ois Caron, Christian Ameri, Thomas SolivÃ©res, DorothÃ©e Briere, Ã‰milie Caen, Sylvain Lazard, Jean-FranÃ§ois Cayrey, FranÃ§ois Bureloup', 'OchrnutÃ½ a bohatÃ½ aristokrat Philippe si za svÃ©ho novÃ©ho opatrovnÃ­ka vybere Drisse, Å¾ivelnÃ©ho mladÃ­ka z pÃ¸edmÃ¬stÃ­, kterÃ©ho prÃ¡vÃ¬ propustili z vÃ¬zenÃ­. JinÃ½mi slovy - najde si na tuto prÃ¡ci tu nejmÃ©nÃ¬ vhodnou osobu. PodaÃ¸Ã­ se jim vÅ¡ak propojit nemoÅ¾nÃ©: Vivaldiho a populÃ¡rnÃ­ hudbu, seriÃ³znost a Å¾oviÃ¡lnÃ­ vtÃ­pky, luxusnÃ­ obleky a teplÃ¡ky. BlÃ¡znivÃ½m, zÃ¡bavnÃ½m, silnÃ½m, neoÃ¨ekÃ¡vanÃ½m a hlavnÃ¬ â€nedotknutelnÃ½mâ€œ, pÃ¸esnÃ¬ takovÃ½m se stane jejich pÃ¸Ã¡telstvÃ­â€¦ Komedie s dramatickou zÃ¡pletkou o tom, Å¾e ani od krku po prsty u nohou nepohyblivÃ½ Ã¨lovÃ¬k odkÃ¡zanÃ½ na pomoc druhÃ½ch, nemusÃ­ ztratit smysl Å¾ivota. A o tom, Å¾e i nejmÃ©nÃ¬ pravdÃ¬podobnÃ© spojenÃ­ melancholickÃ©ho multimilionÃ¡Ã¸e a extrovertnÃ­ho recidivisty mÃ¹Å¾e humornÃ¬ zapÃ¹sobit na divÃ¡ka a mÃ¹Å¾e se z nÃ¬j stÃ¡t kasovnÃ­ trhÃ¡k.', 'Ano');
+INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('FantastickÃ¡ zvÃ­Ã¸ata: Grindelwaldovy zloÃ¨iny', 'DobrodruÅ¾nÃ½', 134, 'anglickÃ½', 'UK', 'David Yates', 'Eddie Redmayne, Katherine Waterston, Dan Fogler, Johnny Depp, Jude Law, Alison Sudol, Ezra Miller, ZoÃ« Kravitz, Claudia Kim, Carmen Ejogo, Jessica Williams, Ã“lafur Darri Ã“lafsson, Callum Turner, Victoria Yeates, Poppy Corby-Tuech, Brontis Jodorowsky, William Nadylam, Fiona Glascott, Derek Riddell, Kevin Guthrie, David Sakurai', 'Na konci prvnÃ­ho filmu KOKUSA (KouzelnÃ­ckÃ½ kongres USA) zajme s pomocÃ­ Mloka Scamandera (Eddie Redmayne) mocnÃ©ho Ã¨ernoknÃ¬Å¾nÃ­ka Gellerta Grindelwalda (Johnny Depp). Grindelwald ale splnil svou hrozbu, Å¾e uteÃ¨e z vazby, a zaÃ¨al shromaÅ¾Ã¯ovat svÃ© stoupence, z nichÅ¾ vÃ¬tÅ¡ina vÃ¹bec nic netuÅ¡ila o jeho skuteÃ¨nÃ½ch cÃ­lech: pÃ¸ipravit vlÃ¡du Ã¨istokrevnÃ½ch Ã¨arodÃ¬jÃ¹ nad vÅ¡emi nemagickÃ½mi bytostmi. Ve snaze zmaÃ¸it Grindelwaldovy plÃ¡ny, Albus BrumbÃ¡l (Jude Law) zÃ­skÃ¡ svÃ©ho bÃ½valÃ©ho studenta Mloka Scamandera, kterÃ½ souhlasÃ­ s tÃ­m, Å¾e pomÃ¹Å¾e, aniÅ¾ by si uvÃ¬domoval, jakÃ©mu nebezpeÃ¨Ã­ se tÃ­m vystavuje. BitevnÃ­ linie jsou vytyÃ¨eny a ve stÃ¡le vÃ­ce znesvÃ¡Ã¸enÃ©m svÃ¬tÃ¬ Ã¨arodÃ¬jÃ¹ je podrobena zkouÅ¡ce lÃ¡ska a loajalita, dokonce i mezi nejvÃ¬rnÃ¬jÅ¡Ã­mi pÃ¸Ã¡teli a rodinou.', 'Ano');
+INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('MlÃ¨enÃ­ jehÃ²Ã¡tek', 'FilmovÃ© drama', 138, 'Ã¨eskÃ½', 'USA', 'Jonathan Demme', 'Jodie Foster, Anthony Hopkins, Scott Glenn, Anthony Heald, Ted Levine, Frankie Faison, Kasi Lemmons, Brooke Smith, Obba BabatundÃ©, Diane Baker, Roger Corman, Charles Napier, Cynthia Ettinger, Chris Isaak, Daniel von Bargen, Ted Monte, George A. Romero, Tracey Walter, Stuart Rudin, Brent Hinkley, John W. Iwanonkiw, John Hall', 'Clarice StarlingovÃ¡, nadanÃ¡ studentka akademie FBI, je pÃ¸idÃ¬lena agentu Crawfordovi vyÅ¡etÃ¸ujÃ­cÃ­mu pÃ¸Ã­pad masovÃ©ho vraha Buffalo Billa, kterÃ½ svÃ© obÃ¬ti stahuje z kÃ¹Å¾e. Clarice navÅ¡tÃ­vÃ­ v baltimorskÃ© vÃ¬zeÃ²skÃ© nemocnici bÃ½valÃ©ho vynikajÃ­cÃ­ho psychiatra Hannibala Lectera, odsouzenÃ©ho na doÅ¾ivotÃ­ za sÃ©rii brutÃ¡lnÃ­ch vraÅ¾d a kanibalismus, kterÃ½ by o vrahovi mohl nÃ¬co vÃ¬dÃ¬t. OdsouzenÃ½ psychiatr Clarice zÃ¡roveÃ² dÃ¬sÃ­ a fascinuje. KdyÅ¾ je masovÃ½m vrahem unesena dcera senÃ¡torky MartinovÃ©, nabÃ­dne Clarice Lecterovi pÃ¸ijatelnÃ¬jÅ¡Ã­ vÃ¬zeÃ²skÃ© podmÃ­nky vÃ½mÃ¬nou za informaci, vedoucÃ­ k dopadenÃ­ Buffalo Billa...', 'Ne');
 
-INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('Forrest Gump', 'Filmové drama', 144, 'èeskı', 'USA', 'Robert Zemeckis', 'Tom Hanks, Robin Wright, Gary Sinise, Mykelti Williamson, Sally Field, Haley Joel Osment, Peter Dobson, Siobhan Fallon Hogan, Hanna Hall, Brett Rice, Kirk Ward, Kurt Russell, Stephen Bridgewater, Michael Jace, Michael McFall, Joe Alaskey, Sam Anderson, Jacqueline Lovell, Mary Ellen Trainor, Vanessa Roth, Bryan Hanna, Jason McGuire', 'Zemeckisùv film je brilantním shrnutím dosavadních reisérovıch poznatkù o monostech "comicsového" vyprávìní. Formálnì i obsahovì nejménì konvenèní z jeho snímkù pøesvìdèuje komediálními gagy i naléhavì patetickım tónem. Jeho hrdinou je prosáèek Forrest Gump, typickı obyèejnı mu, kterı od dìtství dìlal, co se mu øeklo. Do ivota si tak odnesl nìkolik ponauèení své peèlivé maminky a osvìdèené pravidlo, je se mu hodí mnohokrát v nejrùznìjších situacích: Kdy se dostaneš do problémù, utíkej. Forrest proutíká školou, jako hráè amerického fotbalu i univerzitou, potom peklem vietnamské války a zoufalstvím nad matèinou smrtí. Vdycky je toti nìkdo nebo nìco, co po nìm skuteènì èi obraznì "hází kameny". Nakonec však Forrest poznává, e jsou i jiná øešení situací ne útìk. Svùj ivot spojuje s kamarádkou ze školy Jenny, která pro nìj zùstane provdycky jedinou láskou, s pøítelem z vojny, èernochem Bubbou, kterı dá smìr jeho úvahám o lovu krevet a s poruèíkem Taylorem, jemu ve Vietnamu zachrání ivot. Forrestova ivotní pou od 50. do 80. let je koncipovaná jako totálnì "bezelstné" vyprávìní hrdiny, neschopného obecnìjšího hodnocení situace. Forrest jako sportovec i jako váleènı hrdina se setkává se slavnımi lidmi, které nakonec vdycky nìkdo zastøelí (J. F. Kennedy, J. Lennon). Také jeho bliní umírají, ale on sám zùstává. Empiricky se dopracovává od impulsivního útìku pøed ivotem k úvahám o lidském osudu a o Bohu. Soukromı hrdinùv osud zároveò postihuje tøicet let pováleènıch americkıch dìjin.', 'Ano');
+INSERT INTO film(nazev, zanr, delka, jazyk, puvod, rezie, obsazeni, popis, pristupny) VALUES ('Forrest Gump', 'FilmovÃ© drama', 144, 'Ã¨eskÃ½', 'USA', 'Robert Zemeckis', 'Tom Hanks, Robin Wright, Gary Sinise, Mykelti Williamson, Sally Field, Haley Joel Osment, Peter Dobson, Siobhan Fallon Hogan, Hanna Hall, Brett Rice, Kirk Ward, Kurt Russell, Stephen Bridgewater, Michael Jace, Michael McFall, Joe Alaskey, Sam Anderson, Jacqueline Lovell, Mary Ellen Trainor, Vanessa Roth, Bryan Hanna, Jason McGuire', 'ZemeckisÃ¹v film je brilantnÃ­m shrnutÃ­m dosavadnÃ­ch reÅ¾isÃ©rovÃ½ch poznatkÃ¹ o moÅ¾nostech "comicsovÃ©ho" vyprÃ¡vÃ¬nÃ­. FormÃ¡lnÃ¬ i obsahovÃ¬ nejmÃ©nÃ¬ konvenÃ¨nÃ­ z jeho snÃ­mkÃ¹ pÃ¸esvÃ¬dÃ¨uje komediÃ¡lnÃ­mi gagy i nalÃ©havÃ¬ patetickÃ½m tÃ³nem. Jeho hrdinou je prosÂÃ¡Ã¨ek Forrest Gump, typickÃ½ obyÃ¨ejnÃ½ muÅ¾, kterÃ½ od dÃ¬tstvÃ­ dÃ¬lal, co se mu Ã¸eklo. Do Å¾ivota si tak odnesl nÃ¬kolik ponauÃ¨enÃ­ svÃ© peÃ¨livÃ© maminky a osvÃ¬dÃ¨enÃ© pravidlo, jeÅ¾ se mu hodÃ­ mnohokrÃ¡t v nejrÃ¹znÃ¬jÅ¡Ã­ch situacÃ­ch: KdyÅ¾ se dostaneÅ¡ do problÃ©mÃ¹, utÃ­kej. Forrest proutÃ­kÃ¡ Å¡kolou, jako hrÃ¡Ã¨ americkÃ©ho fotbalu i univerzitou, potom peklem vietnamskÃ© vÃ¡lky a zoufalstvÃ­m nad matÃ¨inou smrtÃ­. VÅ¾dycky je totiÅ¾ nÃ¬kdo nebo nÃ¬co, co po nÃ¬m skuteÃ¨nÃ¬ Ã¨i obraznÃ¬ "hÃ¡zÃ­ kameny". Nakonec vÅ¡ak Forrest poznÃ¡vÃ¡, Å¾e jsou i jinÃ¡ Ã¸eÅ¡enÃ­ situacÃ­ neÅ¾ ÃºtÃ¬k. SvÃ¹j Å¾ivot spojuje s kamarÃ¡dkou ze Å¡koly Jenny, kterÃ¡ pro nÃ¬j zÃ¹stane provÅ¾dycky jedinou lÃ¡skou, s pÃ¸Ã­telem z vojny, Ã¨ernochem Bubbou, kterÃ½ dÃ¡ smÃ¬r jeho ÃºvahÃ¡m o lovu krevet a s poruÃ¨Ã­kem Taylorem, jemuÅ¾ ve Vietnamu zachrÃ¡nÃ­ Å¾ivot. Forrestova Å¾ivotnÃ­ pouÂ od 50. do 80. let je koncipovanÃ¡ jako totÃ¡lnÃ¬ "bezelstnÃ©" vyprÃ¡vÃ¬nÃ­ hrdiny, neschopnÃ©ho obecnÃ¬jÅ¡Ã­ho hodnocenÃ­ situace. Forrest jako sportovec i jako vÃ¡leÃ¨nÃ½ hrdina se setkÃ¡vÃ¡ se slavnÃ½mi lidmi, kterÃ© nakonec vÅ¾dycky nÃ¬kdo zastÃ¸elÃ­ (J. F. Kennedy, J. Lennon). TakÃ© jeho bliÅ¾nÃ­ umÃ­rajÃ­, ale on sÃ¡m zÃ¹stÃ¡vÃ¡. Empiricky se dopracovÃ¡vÃ¡ od impulsivnÃ­ho ÃºtÃ¬ku pÃ¸ed Å¾ivotem k ÃºvahÃ¡m o lidskÃ©m osudu a o Bohu. SoukromÃ½ hrdinÃ¹v osud zÃ¡roveÃ² postihuje tÃ¸icet let povÃ¡leÃ¨nÃ½ch americkÃ½ch dÃ¬jin.', 'Ano');
 
 
 INSERT INTO sal(kapacita, id_kino) VALUES (186, 1);
@@ -348,18 +348,18 @@ INSERT INTO promitani(datum, cas, id_sal, id_film) VALUES (date '2019-04-10', ti
 INSERT INTO promitani(datum, cas, id_sal, id_film) VALUES (date '2019-04-11', timestamp '2019-04-11 20:30:00.00 +01:00', 6, 3);
 
 
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Jan', 'Maxmilián', 'Kliš', '+420732128465', 'klis25@gmail.com', 'Dítì');
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Petr', 'František', 'Válek', '+420608563259', 'valek456@seznam.cz', 'Student');
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Vanesa', 'Jaroslava', 'Bednáøovská', '+421702305983', 'bedna25@centrum.cz', 'Dospìlı');
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Jana', 'Marie', 'Louskavá', '+420603055396', 'louskacek@louskacek.cz', 'Dùchodce');
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Jan', 'MaxmiliÃ¡n', 'KliÅ¡', '+420732128465', 'klis25@gmail.com', 'DÃ­tÃ¬');
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Petr', 'FrantiÅ¡ek', 'VÃ¡lek', '+420608563259', 'valek456@seznam.cz', 'Student');
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Vanesa', 'Jaroslava', 'BednÃ¡Ã¸ovskÃ¡', '+421702305983', 'bedna25@centrum.cz', 'DospÃ¬lÃ½');
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('Jana', 'Marie', 'LouskavÃ¡', '+420603055396', 'louskacek@louskacek.cz', 'DÃ¹chodce');
 INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina) VALUES ('John', 'Cliff', 'Doe', '+421775309855', 'john.doe@oracle.com', 'ZTP');
 
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Jiøí', 'Emanuel', 'Kliš', '+420732128466', 'klis225@gmail.com', 'Dítì', 6851034606);
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Petra', 'Františka', 'Válek', '+420608563359', 'valek456@seznam.cz', 'Student', 9710110321);
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Jarmila', 'Jaroslava', 'Bednáøovská', '+421702305583', 'bednarova25@centrum.cz', 'Dospìlı', 6906302589);
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Jiøina', 'Maruna', 'Louskavá', '+420603056396', 'louskacek2@louskacek.cz', 'Dùchodce', 8351293112);
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Pep', 'Námoøník', 'Guardiola', '+421775309857', 'pepek@mancity.com', 'Dospìlı', 9210240546);
-INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('José', 'TheSpecialOne', 'Mourinho', '+420111111111', 'itsjose@jose.com', 'Dospìlı', 9210240546);
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('JiÃ¸Ã­', 'Emanuel', 'KliÅ¡', '+420732128466', 'klis225@gmail.com', 'DÃ­tÃ¬', 6851034606);
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Petra', 'FrantiÅ¡ka', 'VÃ¡lek', '+420608563359', 'valek456@seznam.cz', 'Student', 9710110321);
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Jarmila', 'Jaroslava', 'BednÃ¡Ã¸ovskÃ¡', '+421702305583', 'bednarova25@centrum.cz', 'DospÃ¬lÃ½', 6906302589);
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('JiÃ¸ina', 'Maruna', 'LouskavÃ¡', '+420603056396', 'louskacek2@louskacek.cz', 'DÃ¹chodce', 8351293112);
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('Pep', 'NÃ¡moÃ¸nÃ­k', 'Guardiola', '+421775309857', 'pepek@mancity.com', 'DospÃ¬lÃ½', 9210240546);
+INSERT INTO zakaznik(jmeno, prostredni_jmeno, prijmeni, telefon, email, vekova_skupina, rodne_cislo) VALUES ('JosÃ©', 'TheSpecialOne', 'Mourinho', '+420111111111', 'itsjose@jose.com', 'DospÃ¬lÃ½', 9210240546);
 
 INSERT INTO rezervace(datum_rezervace, aktivni, id_zakaznik, id_promitani) VALUES (date '2019-03-23', 1, 1, 1);
 INSERT INTO rezervace(datum_rezervace, aktivni, id_zakaznik, id_promitani) VALUES (date '2019-03-23', 1, 2, 2);
@@ -423,7 +423,7 @@ WHERE NOT EXISTS(
 
 --SKRIPT OBSAHUJICI PREDIKAT IN S VNORENYM SELECTEM
 
---seznam filmu, ktere se promitaji mezi 26. - 27. bøeznem 2019
+--seznam filmu, ktere se promitaji mezi 26. - 27. bÃ¸eznem 2019
 SELECT film.nazev AS nazev
 FROM film
 WHERE film.id_film IN(
@@ -445,17 +445,17 @@ INSERT INTO promitani(datum, cas, id_sal, id_film) VALUES (date '2019-10-11', ti
 SELECT MAX(promitani.id_promitani) AS POSLEDNI_ID FROM promitani;
 
 
---trigger co vypise chybu -> kolize s jinım promítáním
+--trigger co vypise chybu -> kolize s jinÃ½m promÃ­tÃ¡nÃ­m
 
 INSERT INTO promitani(datum, cas, id_sal, id_film) VALUES (date '2019-04-11', timestamp '2019-04-11 21:30:00.00 +01:00', 6, 3);
 
--- vyvolání procedur
--- procedura na vypsani vekovych skupin zákazníkù a jejich percentuální zastoupení
+-- vyvolÃ¡nÃ­ procedur
+-- procedura na vypsani vekovych skupin zÃ¡kaznÃ­kÃ¹ a jejich percentuÃ¡lnÃ­ zastoupenÃ­
 EXEC vekove_skupiny_zakazniku_procentualne();
--- procedura na vypsání treb jednotlivıch filmù
+-- procedura na vypsÃ¡nÃ­ trÅ¾eb jednotlivÃ½ch filmÅ¯
 EXEC celkova_trzba_jednotlivych_filmu();
 
--- pouití explain plan pro zjištìní ceny dotazu
+-- pouÅ¾itÃ­ explain plan pro zjiÅ¡tÄ›nÃ­ ceny dotazu
 EXPLAIN PLAN FOR 
     SELECT promitani.id_promitani AS ID, promitani.datum AS DATUM, TO_CHAR(promitani.cas, 'hh24:mi') AS CAS, AVG(listek.cena) AS prumerny_cena_na_osobu
     FROM promitani, listek
@@ -463,10 +463,10 @@ EXPLAIN PLAN FOR
     GROUP BY promitani.id_promitani, promitani.datum, TO_CHAR(promitani.cas, 'hh24:mi');
 SELECT * FROM TABLE(dbms_xplan.display());
 
--- vytvoøení indexu pro sníení ceny dotazu
+-- vytvoÃ¸enÃ­ indexu pro snÃ­Å¾enÃ­ ceny dotazu
 CREATE INDEX promitani_index ON promitani ( id_promitani, datum, cas );
 
---opìtovné volání pro zjištìní ceny stejného dotazu (cena se sníila)
+--opÃ¬tovnÃ© volÃ¡nÃ­ pro zjiÅ¡tÄ›nÃ­ ceny stejnÃ©ho dotazu (cena se snÃ­Å¾ila)
 EXPLAIN PLAN FOR 
     SELECT promitani.id_promitani AS ID, promitani.datum AS DATUM, TO_CHAR(promitani.cas, 'hh24:mi') AS CAS, AVG(listek.cena) AS prumerny_cena_na_osobu
     FROM promitani, listek
@@ -508,7 +508,7 @@ GROUP BY xstudn00.multikino.mesto;
 
 SELECT * FROM multikino_view;
 
-INSERT INTO xstudn00.multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Praha', 'Paøíská', 1257, 10000);
+INSERT INTO xstudn00.multikino(mesto, ulice, cislo_popisne, postovni_smerovaci_cislo) VALUES ('Praha', 'PaÃ¸Ã­Å¾skÃ¡', 1257, 10000);
 COMMIT;
 
 SELECT * FROM multikino_view;
