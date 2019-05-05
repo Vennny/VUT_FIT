@@ -10,6 +10,7 @@
     MinWidth="450"
     MinHeight="600"
     mc:Ignorable="d">
+    <Window.Icon>../../Resources/favicon.ico</Window.Icon>
     <Frame
         x:Name="FrameContent"
         NavigationUIVisibility="Hidden"

@@ -7,7 +7,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window"
-    Title="TeamsWindow"
+    Title="Teams"
     MinWidth="900"
     MinHeight="600"
     d:DesignHeight="694.5"
@@ -15,6 +15,7 @@
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=TeamsListViewModel}"
     Foreground="#E5E5E5"
     mc:Ignorable="d">
+    <Window.Icon>../../Resources/favicon.ico</Window.Icon>
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="35" />

@@ -10,6 +10,7 @@
     MinHeight="600"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=TeamViewModel}"
     mc:Ignorable="d">
+    <Window.Icon>../../Resources/favicon.ico</Window.Icon>
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#60a3bc" />

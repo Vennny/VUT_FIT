@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Add new comment" MinWidth="900" MinHeight="600">
-
+        <Window.Icon>../../Resources/favicon.ico</Window.Icon>
         <Window.Resources>
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="#60a3bc" />
