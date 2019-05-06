@@ -1,8 +1,10 @@
-﻿<Application x:Class="ICSapp.App.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModels="clr-namespace:ICSapp.App"
-             StartupUri="Views/Windows/Start.xaml">
+﻿<Application
+    x:Class="ICSapp.App.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:ICSapp.App.Converters"
+    xmlns:viewModels="clr-namespace:ICSapp.App"
+    StartupUri="Views/Windows/Start.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <viewModels:ViewModelLocator x:Key="ViewModelLocator" />

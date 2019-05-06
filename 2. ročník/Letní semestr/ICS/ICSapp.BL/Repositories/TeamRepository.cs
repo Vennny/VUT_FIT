@@ -28,7 +28,6 @@ namespace ICSapp.BL.Repositories
                     .Where(s => s.TeamLinks.Any(c => c.TeamId == teamId))
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .Select(Mapper.Mapper.MapUserEntityToUsersListModel)
                     .ToList();
                     return users;
@@ -77,7 +76,6 @@ namespace ICSapp.BL.Repositories
                     var userEntity = dbContext.Users
                         .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                         .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                        .Include(x => x.Contributions)
                         .FirstOrDefault(x => x.Id == userId);
 
                     var userTeamLink = new UserTeam { UserId = userEntity.Id, TeamId = teamEntity.Id, User = userEntity, Team = teamEntity };
@@ -129,7 +127,6 @@ namespace ICSapp.BL.Repositories
                 var userEntity = dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .First(t => t.Id == userId);
 
                 var teamLink = userEntity.TeamLinks.First(t => t.TeamId == teamId);

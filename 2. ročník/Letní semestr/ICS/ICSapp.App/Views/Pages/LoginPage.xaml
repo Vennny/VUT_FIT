@@ -133,7 +133,7 @@
                     Padding="45,5,20,0"
                     HorizontalAlignment="Left"
                     ff:PasswordBoxAssistant.BindPassword="true"
-                    ff:PasswordBoxAssistant.BoundPassword="{Binding Path=User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ff:PasswordBoxAssistant.BoundPassword="{Binding Path=User.Password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                     Background="Transparent"
                     BorderThickness="0"
                     IsEnabled="True" />

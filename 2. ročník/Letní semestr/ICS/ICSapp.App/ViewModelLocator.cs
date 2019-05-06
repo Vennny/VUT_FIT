@@ -32,7 +32,7 @@ namespace ICSapp.App
 
         public UserViewModel UserViewModel => new UserViewModel(userRepository, teamRepository, mediator);
         public LoginViewModel LoginViewModel => new LoginViewModel(userRepository, mediator);
-        public TeamViewModel TeamViewModel => new TeamViewModel(userRepository, teamRepository, mediator);
+        public TeamViewModel TeamViewModel => new TeamViewModel(userRepository, teamRepository, postRepository, mediator);
         public TeamsListViewModel TeamsListViewModel => new TeamsListViewModel(userRepository, postRepository, teamRepository, commentRepository, mediator);
     }
 }

@@ -28,6 +28,7 @@ namespace ICSapp.App.ViewModels
         public ICommand EditUserInformationCommand { get; set; }
         public ICommand OpenTeamsCommand { get; set; }
         public ICommand CreateTeamCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
 
         public string CreateTeamInfo { get; set; }
         public string EditName { get; set; }
@@ -51,6 +52,7 @@ namespace ICSapp.App.ViewModels
             EditUserInformationCommand = new RelayCommand(EditUserInformation);
             OpenTeamsCommand = new RelayCommand(OpenTeams);
             CreateTeamCommand = new RelayCommand(CreateNewTeam);
+            LogOutCommand = new RelayCommand(OpenLogIn);
 
 
             mediator.Register<ActiveUserMessage>(UserLoggedIn);
@@ -62,7 +64,7 @@ namespace ICSapp.App.ViewModels
             if (string.IsNullOrEmpty(EditName) ||
                 string.IsNullOrEmpty(EditSurname) ||
                 string.IsNullOrEmpty(EditPassword)){
-                EditText = "Firstname, lastname and password fields must not be empty";
+                EditText = "Fill boxes";
             }
             else
             {
@@ -148,6 +150,28 @@ namespace ICSapp.App.ViewModels
             TeamsWindow.Show();
 
             mediator.Send(new ActiveUserMessage { Id = User.Id });
+        }
+
+        private void OpenLogIn()
+        {
+
+            LogOut(this.User.Id);
+
+            Start Start = new Start();
+
+
+            Start.Show();
+
+            List<Window> windows = new List<Window>();
+
+            foreach (Window f in Application.Current.Windows)
+                windows.Add(f);
+
+            foreach (Window f in windows)
+            {
+                if (f.Name != "Starting")
+                    f.Close();
+            }            
         }
     }
 }

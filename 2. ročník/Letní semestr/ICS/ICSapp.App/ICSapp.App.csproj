@@ -152,6 +152,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Helpers\AutoScrollAssistant.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -169,14 +171,8 @@
     <Compile Include="Views\Windows\CreateTeamWindow.xaml.cs">
       <DependentUpon>CreateTeamWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\DeleteUserFromTeamWindow.xaml.cs">
-      <DependentUpon>DeleteUserFromTeamWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\NewComment.xaml.cs">
-      <DependentUpon>NewComment.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\PostsView.xaml.cs">
-      <DependentUpon>PostsView.xaml</DependentUpon>
+    <Compile Include="Views\Windows\CreateCommentWindow.xaml.cs">
+      <DependentUpon>CreateCommentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -187,8 +183,6 @@
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CommentViewModel.cs" />
-    <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -198,8 +192,11 @@
     <Compile Include="Views\Windows\TeamsWindow.xaml.cs">
       <DependentUpon>TeamsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\TeamView.xaml.cs">
-      <DependentUpon>TeamView.xaml</DependentUpon>
+    <Compile Include="Views\Windows\TeamWindow.xaml.cs">
+      <DependentUpon>TeamWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
@@ -217,15 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\DeleteUserFromTeamWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\NewComment.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\PostsView.xaml">
+    <Page Include="Views\Windows\CreateCommentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,7 +234,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\TeamView.xaml">
+    <Page Include="Views\Windows\TeamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

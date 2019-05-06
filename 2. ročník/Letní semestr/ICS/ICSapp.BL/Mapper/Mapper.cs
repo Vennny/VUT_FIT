@@ -32,17 +32,7 @@ namespace ICSapp.BL.Mapper
             {
                 teamLink = new List<UserTeamModel>();
             }
-            
-            List<CommentModel> comments;
-            if (entity.Contributions != null && entity.Contributions.Count > 0)
-            {
-                comments = entity.Contributions.Select(x => MapCommentEntityToCommentModel(x)).ToList();
-            }
-            else
-            {
-                comments = new List<CommentModel>();
-            }
-            
+                       
             return new UserModel
             {
                 Id = entity.Id,
@@ -54,8 +44,7 @@ namespace ICSapp.BL.Mapper
                 Picture = entity.Picture,
                 Activity = entity.Activity,
                 LastActivity = entity.LastActivity,
-                Teams = teamLink,
-                Contributions = comments
+                Teams = teamLink
             };
         }
 
@@ -86,17 +75,7 @@ namespace ICSapp.BL.Mapper
             else
             {
                 teamLink = new List<UserTeam>();
-            }
-
-            List<Comment> comments;
-            if (model.Contributions != null && model.Contributions.Count > 0)
-            {
-                comments = model.Contributions.Select(x => MapCommentModelToCommentEntity(x)).ToList();
-            }
-            else
-            {
-                comments = new List<Comment>();
-            }
+            }           
 
 
             var user = new User
@@ -110,8 +89,7 @@ namespace ICSapp.BL.Mapper
                 Picture = model.Picture,
                 Activity = model.Activity,
                 LastActivity = model.LastActivity,
-                TeamLinks = teamLink,
-                Contributions = comments
+                TeamLinks = teamLink
             };
             return user;
         }

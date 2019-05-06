@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ICSapp.BL.Models;
 using Xunit;
@@ -63,12 +64,12 @@ namespace ICSapp.BL.Tests
             fixture.UserRepository.RemoveUser(returnedUserModel1.Id);
         }
 
-        //[Fact]
+        [Fact]
         public void RemoveTeamMate_Test()
         {            
             var userModel = new UserModel
             {
-                EmailAdress = "DavidValecky@centrum.cz",
+                EmailAdress = "DavidValecky1@centrum.cz",
                 Password = "rabat587",
                 FirstName = "David",
                 Surname = "Valecký",
@@ -91,60 +92,10 @@ namespace ICSapp.BL.Tests
             fixture.Repository.RemoveTeamMate(returnedTeamWithMember.Id, returnedUserModel.Id);
             var returnedTeamWithoutMemeber = fixture.Repository.GetById(returnedTeamWithMember.Id);
             
-            Assert.Equal(returnedTeamModel, returnedTeamWithoutMemeber);
+            Assert.Equal(returnedTeamModel.Members.Count(), returnedTeamWithoutMemeber.Members.Count());
 
+            fixture.UserRepository.RemoveUser(returnedUserModel.Id);
             fixture.Repository.RemoveTeam(returnedTeamModel.Id);
-            fixture.UserRepository.RemoveUser(userModel.Id);
-        }
-
-        //[Fact]
-        public void AddPost_Test()
-        {
-            var userModel1 = new UserModel
-            {
-                EmailAdress = "DavidValecky@centrum.cz",
-                Password = "rabat587",
-                FirstName = "David",
-                Surname = "Valecký",
-                Description = "170cm blonďák, tetování až na patách.",
-                Activity = false,
-                LastActivity = DateTime.Now
-            };
-
-            var postModel = new PostModel
-            {
-                Author = userModel1,
-                MessageContent = "Já som hroch",
-                Time = DateTime.Now
-            };
-
-            var teamModel1 = new TeamModel
-            {
-                TeamName = "Bondovka"
-            };
-
-            var teamModel2 = new TeamModel
-            {
-                TeamName = "Gargy team",
-                Posts = new List<PostModel>
-                {
-                    new PostModel
-                    {
-                        Author = userModel1,
-                        MessageContent = "Já som hroch",
-                        Time = DateTime.Now
-                    }
-                }
-            };
-
-            var returnedTeamModel1 = fixture.UserRepository.CreateTeam(teamModel1);
-            var returnedTeamModel2 = fixture.UserRepository.CreateTeam(teamModel2);
-            var returnedUserModel = fixture.UserRepository.CreateUser(userModel1);
-            var returnedPostModel = fixture.Repository.CreatePost(postModel, returnedUserModel.Id);
-            var returnedTeamModelWithPost = fixture.Repository.AddPost(returnedTeamModel1.Id, returnedPostModel.Id);
-            Assert.NotEmpty(returnedTeamModelWithPost.Posts);
-            fixture.Repository.RemoveTeam(returnedTeamModel1.Id);
-            fixture.Repository.RemoveTeam(returnedTeamModel2.Id);
         }
 
        [Fact]

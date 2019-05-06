@@ -24,7 +24,6 @@ namespace ICSapp.BL.Repositories
                 return dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .Select(e => Mapper.Mapper.MapUserEntityToUsersListModel(e));
             }
         }
@@ -36,7 +35,6 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .FirstOrDefault(t => t.Id == userId);
 
                 if (entity == null)
@@ -69,7 +67,6 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Users
                 .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                 .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                .Include(x => x.Contributions)
                 .FirstOrDefault(t => t.EmailAdress == emailAdress);
 
                 if (entity == null)
@@ -95,8 +92,7 @@ namespace ICSapp.BL.Repositories
                     Picture = userModel.Picture,
                     Activity = userModel.Activity,
                     LastActivity = userModel.LastActivity,
-                    TeamLinks = new List<UserTeam>(),
-                    Contributions = new List<Comment>()
+                    TeamLinks = new List<UserTeam>()
                 };
 
                 dbContext.Users.Add(entity);
@@ -112,7 +108,6 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .First(t => t.Id == userModel.Id);
 
                 entity.FirstName = userModel.FirstName;
@@ -133,7 +128,6 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .First(t => t.Id == userId);
 
                 dbContext.Remove(entity);
@@ -166,7 +160,6 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .FirstOrDefault(x => x.EmailAdress == emailAdress);
 
                 if (entity.Password != null && BCrypt.Net.BCrypt.Verify(logInPassword, entity.Password))
@@ -190,7 +183,6 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Users
                     .Include(x => x.TeamLinks).ThenInclude(x => x.User)
                     .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Contributions)
                     .First(t => t.Id == userId);
 
                 entity.Activity = false;

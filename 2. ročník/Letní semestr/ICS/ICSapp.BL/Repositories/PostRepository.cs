@@ -92,7 +92,9 @@ namespace ICSapp.BL.Repositories
         {
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                var commentEntity = dbContext.Comments.FirstOrDefault(x => x.Id == commentId);
+                var commentEntity = dbContext.Comments
+                    .Include(x => x.Author)
+                    .FirstOrDefault(x => x.Id == commentId);
 
                 var postEntity = dbContext.Posts
                     .Include(x => x.Author)
@@ -100,16 +102,7 @@ namespace ICSapp.BL.Repositories
                     .First(x => x.Id == postId);
                 
                 postEntity.Contributions.Add(commentEntity);
-                dbContext.Update(postEntity);
-
-                var userEntity = dbContext.Users
-                                    .Include(x => x.TeamLinks).ThenInclude(x => x.User)
-                                    .Include(x => x.TeamLinks).ThenInclude(x => x.Team)
-                                    .Include(x => x.Contributions)
-                                    .First(x => x.Id == commentEntity.Author.Id);
-
-                userEntity.Contributions.Add(commentEntity);
-                dbContext.Update(userEntity);
+                dbContext.Update(postEntity);              
                 
                 dbContext.SaveChanges();
                 return Mapper.Mapper.MapPostEntityToPostModel(postEntity);
