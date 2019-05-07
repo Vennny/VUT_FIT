@@ -48,7 +48,7 @@ namespace ICSapp.BL.Repositories
                 var entity = dbContext.Teams
                     .Include(x => x.UserLinks).ThenInclude(x => x.User)
                     .Include(x => x.UserLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Posts)
+                    .Include(x => x.Posts).ThenInclude(x => x.Author)
                     .FirstOrDefault(t => t.Id == teamId);
 
                 if (entity == null)
@@ -68,7 +68,7 @@ namespace ICSapp.BL.Repositories
                 var teamEntity = dbContext.Teams
                     .Include(x => x.UserLinks).ThenInclude(x => x.User)
                     .Include(x => x.UserLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Posts)
+                    .Include(x => x.Posts).ThenInclude(x => x.Author)
                     .FirstOrDefault(x => x.Id == teamId);
 
                 if (teamEntity.UserLinks.Where(x => x.UserId == userId).Any() == false)
@@ -99,7 +99,7 @@ namespace ICSapp.BL.Repositories
                 var teamEntity = dbContext.Teams
                     .Include(x => x.UserLinks).ThenInclude(x => x.User)
                     .Include(x => x.UserLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Posts)
+                    .Include(x => x.Posts).ThenInclude(x => x.Author)
                     .First(t => t.Id == teamId);
 
                 dbContext.Teams.Remove(teamEntity);
@@ -115,7 +115,7 @@ namespace ICSapp.BL.Repositories
                 var teamEntity = dbContext.Teams
                     .Include(x => x.UserLinks).ThenInclude(x => x.User)
                     .Include(x => x.UserLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Posts)
+                    .Include(x => x.Posts).ThenInclude(x => x.Author)
                     .First(t => t.Id == teamId);
 
                 var userLink = teamEntity.UserLinks
@@ -168,7 +168,7 @@ namespace ICSapp.BL.Repositories
                 var teamEntity = dbContext.Teams
                     .Include(x => x.UserLinks).ThenInclude(x => x.User)
                     .Include(x => x.UserLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Posts)
+                    .Include(x => x.Posts).ThenInclude(x => x.Author)
                     .First(t => t.Id == teamId);
 
                 var postEntity = dbContext.Posts

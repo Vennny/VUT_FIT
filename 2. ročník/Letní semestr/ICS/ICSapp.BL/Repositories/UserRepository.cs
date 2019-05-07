@@ -54,8 +54,8 @@ namespace ICSapp.BL.Repositories
                     .Where(s => s.UserLinks.Any(c => c.UserId == userId))
                     .Include(x => x.UserLinks).ThenInclude(x => x.User)
                     .Include(x => x.UserLinks).ThenInclude(x => x.Team)
-                    .Include(x => x.Posts)
-                    .Select(Mapper.Mapper.MapTeamEntityToTeamModel)
+                    .Include(x => x.Posts).ThenInclude(x => x.Author)
+                    .Select(s => Mapper.Mapper.MapTeamEntityToTeamModel(s))
                     .ToList();
             }
         }

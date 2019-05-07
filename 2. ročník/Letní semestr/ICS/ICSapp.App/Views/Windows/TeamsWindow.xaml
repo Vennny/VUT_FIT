@@ -517,7 +517,7 @@
                                 BorderThickness="0"
                                 Foreground="#333"
                                 MaxLength="30"
-                                Text="{Binding Post.Title, Mode=OneWayToSource}" />
+                                Text="{Binding Post.Title}" />
                             <materialDesign:PackIcon
                                 Width="20"
                                 Height="20"
@@ -549,7 +549,7 @@
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Foreground="#333"
-                                Text="{Binding Post.MessageContent, Mode=OneWayToSource}" />
+                                Text="{Binding Post.MessageContent}" />
                             <materialDesign:PackIcon
                                 Width="20"
                                 Height="20"
