@@ -1,4 +1,4 @@
 # Seminář C#
 
-Team communication application - not completed yet  
+Team communication application  
 **Authors** - Václav Trampeška, Martin Macháček, Ondřej Studnička, David Valecký, David Gajdoš
